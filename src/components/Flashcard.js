@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
@@ -16,7 +15,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "2em",
     marginBottom: "4em",
   },
-
   letters: {
     fontFamily: "Roboto",
     fontSize: "7.5rem",
@@ -249,7 +247,7 @@ var alphabet = [
   {
     id: 25,
     letter: "Yy",
-    word: "Year & Time Methods",
+    word: "Year, Date & Time Methods",
     definition: "getDate() || getDay() || getFullYear() || getHours()",
     example:
       "There are multiple different types of conditionals in JavaScript including: “If” statements: where if a condition is true it is used to specify execution for a block of code. “Else” statements: where if the same condition is false it specifies the execution for a block of code. “Else if” statements: this specifies a new test if the first condition is false.",
@@ -268,7 +266,10 @@ var alphabet = [
 export default function Flashcard() {
   const classes = useStyles();
   const theme = useTheme();
+
+  // sets current state at the first letter of the array
   const [currentLetter, setCurrentLetter] = useState(0);
+  const [disabled, setDisabled] = useState(true);
 
   const handleNextSelection = () => {
     console.log("you clicked the next button!");
@@ -276,6 +277,9 @@ export default function Flashcard() {
     const nextLetter = currentLetter + 1;
     if (nextLetter < alphabet.length) {
       setCurrentLetter(nextLetter);
+    } else {
+      // once it hits the last letter, start over to the first letter.
+      setCurrentLetter(0);
     }
   };
 
@@ -283,9 +287,7 @@ export default function Flashcard() {
     console.log("you clicked the back button!");
 
     const nextLetter = currentLetter - 1;
-    if (nextLetter === alphabet[0].letter) {
-      setCurrentLetter(null);
-    } else if (nextLetter <= alphabet.length) {
+    if (nextLetter <= alphabet.length) {
       setCurrentLetter(nextLetter);
     }
   };
