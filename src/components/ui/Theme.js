@@ -13,7 +13,6 @@ export default createMuiTheme({
       main: `${flashBlack}`,
     },
   },
-
   typography: {
     h2: {
       fontFamily: "Caveat+Brush",
@@ -21,6 +20,12 @@ export default createMuiTheme({
       fontSize: "2.5rem",
       color: flashGrey,
       lineHeight: "1.5",
+    },
+    body1: {
+      fontFamily: "Oswald",
+      fontWeight: 300,
+      fontSize: "1.25rem",
+      color: flashBlack,
     },
   },
 });
